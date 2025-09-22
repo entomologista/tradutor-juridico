@@ -1,0 +1,539 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2639
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 AppleColorEmoji;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="pt-BR">\
+<head>\
+    <meta charset="UTF-8">\
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+    <title>Tradutor Jur\'eddico Simplificado</title>\
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">\
+    <style>\
+        * \{\
+            margin: 0;\
+            padding: 0;\
+            box-sizing: border-box;\
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\
+        \}\
+\
+        body \{\
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);\
+            min-height: 100vh;\
+            padding: 20px;\
+        \}\
+\
+        .container \{\
+            max-width: 1200px;\
+            margin: 0 auto;\
+            background: rgba(255, 255, 255, 0.95);\
+            border-radius: 20px;\
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);\
+            overflow: hidden;\
+        \}\
+\
+        header \{\
+            background: linear-gradient(90deg, #2c3e50, #3498db);\
+            color: white;\
+            padding: 30px;\
+            text-align: center;\
+        \}\
+\
+        header h1 \{\
+            font-size: 2.5rem;\
+            margin-bottom: 10px;\
+        \}\
+\
+        header p \{\
+            font-size: 1.1rem;\
+            opacity: 0.9;\
+        \}\
+\
+        .main-content \{\
+            display: grid;\
+            grid-template-columns: 1fr 1fr;\
+            gap: 30px;\
+            padding: 40px;\
+        \}\
+\
+        .input-section, .output-section \{\
+            background: white;\
+            border-radius: 15px;\
+            padding: 30px;\
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);\
+        \}\
+\
+        .section-title \{\
+            font-size: 1.5rem;\
+            color: #2c3e50;\
+            margin-bottom: 20px;\
+            display: flex;\
+            align-items: center;\
+            gap: 10px;\
+        \}\
+\
+        .input-options \{\
+            display: flex;\
+            flex-direction: column;\
+            gap: 20px;\
+        \}\
+\
+        .tab-container \{\
+            display: flex;\
+            border-bottom: 2px solid #eee;\
+            margin-bottom: 20px;\
+        \}\
+\
+        .tab \{\
+            padding: 12px 20px;\
+            cursor: pointer;\
+            border: none;\
+            background: transparent;\
+            font-size: 1rem;\
+            color: #7f8c8d;\
+            position: relative;\
+            transition: all 0.3s;\
+        \}\
+\
+        .tab.active \{\
+            color: #3498db;\
+            font-weight: bold;\
+        \}\
+\
+        .tab.active::after \{\
+            content: '';\
+            position: absolute;\
+            bottom: -2px;\
+            left: 0;\
+            width: 100%;\
+            height: 2px;\
+            background: #3498db;\
+        \}\
+\
+        .tab-content \{\
+            display: none;\
+        \}\
+\
+        .tab-content.active \{\
+            display: block;\
+        \}\
+\
+        textarea \{\
+            width: 100%;\
+            min-height: 300px;\
+            padding: 15px;\
+            border: 2px dashed #bdc3c7;\
+            border-radius: 10px;\
+            font-size: 1rem;\
+            resize: vertical;\
+            transition: border-color 0.3s;\
+        \}\
+\
+        textarea:focus \{\
+            outline: none;\
+            border-color: #3498db;\
+        \}\
+\
+        .file-upload \{\
+            border: 2px dashed #bdc3c7;\
+            border-radius: 10px;\
+            padding: 40px;\
+            text-align: center;\
+            cursor: pointer;\
+            transition: all 0.3s;\
+        \}\
+\
+        .file-upload:hover \{\
+            border-color: #3498db;\
+            background: rgba(52, 152, 219, 0.05);\
+        \}\
+\
+        .file-upload i \{\
+            font-size: 3rem;\
+            color: #3498db;\
+            margin-bottom: 15px;\
+        \}\
+\
+        .file-upload p \{\
+            color: #7f8c8d;\
+            margin-bottom: 10px;\
+        \}\
+\
+        .file-upload input \{\
+            display: none;\
+        \}\
+\
+        .file-info \{\
+            margin-top: 15px;\
+            padding: 10px;\
+            background: #ecf0f1;\
+            border-radius: 8px;\
+            display: none;\
+        \}\
+\
+        .translate-btn \{\
+            background: linear-gradient(90deg, #3498db, #2980b9);\
+            color: white;\
+            border: none;\
+            padding: 15px 30px;\
+            border-radius: 50px;\
+            font-size: 1.1rem;\
+            cursor: pointer;\
+            transition: all 0.3s;\
+            display: flex;\
+            align-items: center;\
+            justify-content: center;\
+            gap: 10px;\
+            margin-top: 20px;\
+            width: 100%;\
+        \}\
+\
+        .translate-btn:hover \{\
+            transform: translateY(-2px);\
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);\
+        \}\
+\
+        .translate-btn:disabled \{\
+            background: #95a5a6;\
+            cursor: not-allowed;\
+            transform: none;\
+        \}\
+\
+        .output-area \{\
+            background: #f8f9fa;\
+            border-radius: 10px;\
+            padding: 20px;\
+            min-height: 300px;\
+            border: 1px solid #eee;\
+            white-space: pre-wrap;\
+            line-height: 1.6;\
+        \}\
+\
+        .loading \{\
+            display: none;\
+            text-align: center;\
+            padding: 40px;\
+        \}\
+\
+        .loading i \{\
+            font-size: 2rem;\
+            color: #3498db;\
+            animation: spin 1.5s infinite linear;\
+        \}\
+\
+        @keyframes spin \{\
+            0% \{ transform: rotate(0deg); \}\
+            100% \{ transform: rotate(360deg); \}\
+        \}\
+\
+        .sample-text \{\
+            background: #e3f2fd;\
+            border-left: 4px solid #3498db;\
+            padding: 15px;\
+            margin-top: 20px;\
+            border-radius: 0 8px 8px 0;\
+            cursor: pointer;\
+            transition: all 0.3s;\
+        \}\
+\
+        .sample-text:hover \{\
+            background: #bbdefb;\
+        \}\
+\
+        .features \{\
+            display: grid;\
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));\
+            gap: 20px;\
+            margin-top: 40px;\
+        \}\
+\
+        .feature \{\
+            background: white;\
+            padding: 20px;\
+            border-radius: 10px;\
+            text-align: center;\
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);\
+        \}\
+\
+        .feature i \{\
+            font-size: 2.5rem;\
+            color: #3498db;\
+            margin-bottom: 15px;\
+        \}\
+\
+        .feature h3 \{\
+            color: #2c3e50;\
+            margin-bottom: 10px;\
+        \}\
+\
+        .error-message \{\
+            background: #f8d7da;\
+            color: #721c24;\
+            padding: 15px;\
+            border-radius: 8px;\
+            margin-top: 15px;\
+            display: none;\
+        \}\
+\
+        .success-message \{\
+            background: #d4edda;\
+            color: #155724;\
+            padding: 15px;\
+            border-radius: 8px;\
+            margin-top: 15px;\
+            display: none;\
+        \}\
+\
+        .api-status \{\
+            background: #e8f4fd;\
+            border: 1px solid #bee5eb;\
+            border-radius: 8px;\
+            padding: 15px;\
+            margin-bottom: 20px;\
+            display: flex;\
+            align-items: center;\
+            gap: 10px;\
+        \}\
+\
+        .api-status i \{\
+            color: #17a2b8;\
+            font-size: 1.2rem;\
+        \}\
+\
+        .api-status.connected \{\
+            background: #d4edda;\
+            border-color: #c3e6cb;\
+        \}\
+\
+        .api-status.connected i \{\
+            color: #28a745;\
+        \}\
+\
+        footer \{\
+            background: #2c3e50;\
+            color: white;\
+            text-align: center;\
+            padding: 20px;\
+            margin-top: 40px;\
+        \}\
+\
+        @media (max-width: 768px) \{\
+            .main-content \{\
+                grid-template-columns: 1fr;\
+            \}\
+            \
+            header h1 \{\
+                font-size: 2rem;\
+            \}\
+            \
+            .features \{\
+                grid-template-columns: 1fr;\
+            \}\
+        \}\
+    </style>\
+</head>\
+<body>\
+    <div class="container">\
+        <header>\
+            <h1><i class="fas fa-balance-scale"></i> Tradutor Jur\'eddico Simplificado</h1>\
+            <p>Transforme textos jur\'eddicos complexos em linguagem simples e acess\'edvel</p>\
+        </header>\
+\
+        <div class="main-content">\
+            <div class="input-section">\
+                <h2 class="section-title">\
+                    <i class="fas fa-file-import"></i>\
+                    \'c1rea de Entrada\
+                </h2>\
+                \
+                <div class="api-status connected">\
+                    <i class="fas fa-check-circle"></i>\
+                    <div>\
+                        <strong>Servi\'e7o de Tradu\'e7\'e3o</strong>\
+                        <p>Conectado ao motor de tradu\'e7\'e3o jur\'eddica</p>\
+                    </div>\
+                </div>\
+                \
+                <div class="input-options">\
+                    <div class="tab-container">\
+                        <button class="tab active" onclick="switchTab('text')">\
+                            <i class="fas fa-keyboard"></i> Digitar Texto\
+                        </button>\
+                        <button class="tab" onclick="switchTab('file')">\
+                            <i class="fas fa-file-upload"></i> Enviar Arquivo\
+                        </button>\
+                    </div>\
+                    \
+                    <div id="text-tab" class="tab-content active">\
+                        <textarea id="input-text" placeholder="Cole ou digite aqui o texto jur\'eddico que deseja traduzir..."></textarea>\
+                        <div class="sample-text" onclick="loadSampleText()">\
+                            <i class="fas fa-magic"></i> <strong>Clique aqui para carregar um exemplo</strong>\
+                        </div>\
+                    </div>\
+                    \
+                    <div id="file-tab" class="tab-content">\
+                        <div class="file-upload" onclick="document.getElementById('file-input').click()">\
+                            <i class="fas fa-cloud-upload-alt"></i>\
+                            <p>Clique para selecionar um arquivo</p>\
+                            <small>Formatos suportados: PDF, DOC, DOCX, TXT</small>\
+                            <input type="file" id="file-input" accept=".pdf,.doc,.docx,.txt" onchange="handleFileSelect(event)">\
+                        </div>\
+                        <div id="file-info" class="file-info"></div>\
+                    </div>\
+                    \
+                    <button id="translate-btn" class="translate-btn" onclick="translateText()">\
+                        <i class="fas fa-language"></i> Traduzir Texto\
+                    </button>\
+                    \
+                    <div id="error-message" class="error-message"></div>\
+                </div>\
+            </div>\
+            \
+            <div class="output-section">\
+                <h2 class="section-title">\
+                    <i class="fas fa-file-export"></i>\
+                    Texto Simplificado\
+                </h2>\
+                \
+                <div id="loading" class="loading">\
+                    <i class="fas fa-spinner"></i>\
+                    <p>Traduzindo seu texto...</p>\
+                </div>\
+                \
+                <div id="output-area" class="output-area">\
+                    O texto traduzido aparecer\'e1 aqui...\
+                </div>\
+            </div>\
+        </div>\
+        \
+        <div class="features">\
+            <div class="feature">\
+                <i class="fas fa-gavel"></i>\
+                <h3>Jarg\'f5es Jur\'eddicos</h3>\
+                <p>Traduzimos termos como "habeas corpus" e "dano moral" para linguagem simples</p>\
+            </div>\
+            <div class="feature">\
+                <i class="fas fa-file-alt"></i>\
+                <h3>M\'faltiplos Formatos</h3>\
+                <p>Funciona com PDFs, Word, TXT e texto colado diretamente</p>\
+            </div>\
+            <div class="feature">\
+                <i class="fas fa-shield-alt"></i>\
+                <h3>Privacidade</h3>\
+                <p>Seus documentos s\'e3o processados com seguran\'e7a e n\'e3o s\'e3o armazenados</p>\
+            </div>\
+            <div class="feature">\
+                <i class="fas fa-graduation-cap"></i>\
+                <h3>Acess\'edvel</h3>\
+                <p>Desenvolvido para pessoas com n\'edvel de ensino m\'e9dio</p>\
+            </div>\
+        </div>\
+        \
+        <footer>\
+            <p>\'a9 2023 Tradutor Jur\'eddico Simplificado | Este servi\'e7o n\'e3o substitui consultoria jur\'eddica profissional</p>\
+        </footer>\
+    </div>\
+\
+    <script>\
+        // 
+\f1 \uc0\u55357 \u56628 
+\f0  IMPORTANTE: ATUALIZE ESTA URL COM A DO SEU BACKEND\
+        const BACKEND_URL = 'https://seu-backend-aqui.vercel.app/api/translate';\
+        \
+        function switchTab(tab) \{\
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));\
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));\
+            \
+            if (tab === 'text') \{\
+                document.querySelector('.tab:nth-child(1)').classList.add('active');\
+                document.getElementById('text-tab').classList.add('active');\
+            \} else \{\
+                document.querySelector('.tab:nth-child(2)').classList.add('active');\
+                document.getElementById('file-tab').classList.add('active');\
+            \}\
+        \}\
+\
+        function handleFileSelect(event) \{\
+            const file = event.target.files[0];\
+            if (file) \{\
+                const fileInfo = document.getElementById('file-info');\
+                fileInfo.innerHTML = `\
+                    <i class="fas fa-file"></i> \
+                    <strong>$\{file.name\}</strong> ($\{(file.size / 1024).toFixed(2)\} KB)\
+                `;\
+                fileInfo.style.display = 'block';\
+                \
+                const reader = new FileReader();\
+                reader.onload = function(e) \{\
+                    document.getElementById('input-text').value = e.target.result;\
+                    switchTab('text');\
+                \};\
+                \
+                if (file.type === 'text/plain') \{\
+                    reader.readAsText(file);\
+                \} else \{\
+                    showError('Para arquivos PDF e Word, o processamento \'e9 feito no servidor. Clique em Traduzir.');\
+                \}\
+            \}\
+        \}\
+\
+        function loadSampleText() \{\
+            const sampleText = `O r\'e9u, em sede de contesta\'e7\'e3o, arguiu a ocorr\'eancia de prescri\'e7\'e3o com fulcro no art. 206, \'a7 3\'ba, VIII, do C\'f3digo Civil, aduzindo a in\'e9rcia do autor no exerc\'edcio do direito material pleiteado.`;\
+            document.getElementById('input-text').value = sampleText;\
+            switchTab('text');\
+        \}\
+\
+        async function translateText() \{\
+            const inputText = document.getElementById('input-text').value;\
+            const fileInput = document.getElementById('file-input').files[0];\
+            \
+            if (!inputText && !fileInput) \{\
+                showError('Por favor, insira um texto ou selecione um arquivo para traduzir');\
+                return;\
+            \}\
+            \
+            document.getElementById('loading').style.display = 'block';\
+            document.getElementById('output-area').style.display = 'none';\
+            document.getElementById('error-message').style.display = 'none';\
+            \
+            try \{\
+                const formData = new FormData();\
+                formData.append('text', inputText);\
+                \
+                if (fileInput) \{\
+                    formData.append('file', fileInput);\
+                \}\
+                \
+                const response = await fetch(BACKEND_URL, \{\
+                    method: 'POST',\
+                    body: formData\
+                \});\
+                \
+                if (!response.ok) \{\
+                    throw new Error(`Erro do servidor: $\{response.status\}`);\
+                \}\
+                \
+                const data = await response.json();\
+                \
+                document.getElementById('loading').style.display = 'none';\
+                document.getElementById('output-area').style.display = 'block';\
+                document.getElementById('output-area').textContent = data.translated_text;\
+                \
+            \} catch (error) \{\
+                document.getElementById('loading').style.display = 'none';\
+                document.getElementById('output-area').style.display = 'block';\
+                showError(`Erro ao traduzir: $\{error.message\}`);\
+            \}\
+        \}\
+        \
+        function showError(message) \{\
+            const errorElement = document.getElementById('error-message');\
+            errorElement.textContent = message;\
+            errorElement.style.display = 'block';\
+        \}\
+    </script>\
+</body>\
+</html>}
